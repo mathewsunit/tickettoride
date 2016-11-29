@@ -1,0 +1,45 @@
+<div class="container">
+
+    <div class="row" ng-if="errorMessage != null">
+        <div class="alert alert-success">{{successMessage}}</div>
+    </div>
+
+    <div class="row">
+    <form name="createNewBoard" class="form-horizontal" novalidate ng-submit="createPlayers()">
+        <!-- FORM for creating new game -->
+        <div class="col-md-6">
+			<h2 class="lead">Player Configuration</h2>
+				<table class="table table-hover table-striped table-condensed" ng-show="playerGames.length">
+				<h2 class="lead">Edit Player Data</h2>
+				<thead>
+					<td>Id</td>
+					<td>Name</td>
+					<td>Colour</td>
+					<td></td>
+				</thead>
+				<tbody>
+					<tr ng-repeat="player in playerGames" ng-style="{'background-color':player.playerColor.toLowerCase()}">
+						<td>{{ $index + 1 }}</td>
+						<td>
+							<input type="text" name="playerName" ng-model="player.playerName" required></input>				
+						</td>
+						<td>
+							<select required class="form-control" name="playerColor" id="playerColor" ng-model="player.playerColor" ng-change="update(player.playerColor)">
+		  					<option></option>
+		  					<option ng-repeat="color in playerColors" >{{color}}</option>  
+	    					</select>
+						</td>
+						<td>
+	  						<pre>model = {{player.playerColor}}</pre>
+	  					</td>
+					</tr>
+				</tbody>
+        		</table>
+		</div>
+		<div class="col-sm-offset-4 col-sm-6" style="padding-bottom:50px">
+			<button type="submit" class="btn btn-md btn-primary" ng-disabled="createPlayers.$invalid">
+			<span class="glyphicon glyphicon-plus"></span> New Game </button>
+		</div>
+	</form>
+	</div>
+</div> 

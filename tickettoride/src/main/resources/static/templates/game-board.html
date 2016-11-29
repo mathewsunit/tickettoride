@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<title>Game Board</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="gameon">
+				<div class="tableContainer">
+					<div class="gametable">
+						<div class="tablerow">
+							<div class="{{column.class}}" id="{{column.id}}">
+								<div class="boxContent{{column.letter}}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">Choose Action
+			<table>
+				<tr>
+					<td><button class="btn btn-md btn-primary" ng-click="selectdestinationCard()">Pick Destination Card</button></td>
+					<td><button class="btn btn-md btn-primary" ng-click="picktrainCard()">Pick Train Card</button></td>
+					<td><button class="btn btn-md btn-primary" ng-click="buildRoute()">Build Route</button></td>
+				</tr>
+				<tbody>
+					<tr>
+						<td><div ng-show="show" ng-repeat="card in dCards"><button>{{ card.source }}</button></div></td>
+						<td><div ng-disabled="show" ng-repeat="card in faceUpCards" ng-click="pickTrainCard(card)"><button >{{ card.cardType }}</button></div>
+							<div button ng-click="picktrainCard(card)" ng-hide="show"><button>DECK</button></div>
+						</td>
+						<td><div ng-hide="dCards.show" ng-repeat="card in faceUpCards">{{ card.cardType }}</div></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-6">Player Stats
+			<table>
+				<tr>
+					<td>No of Train Cars remaining</td>
+					<td>Points Accumalted</td>
+				</tr>
+				<tbody>
+					<tr>
+						<td>{{playerInfo.trainCars}}</td>
+						<td>{{playerInfo.score}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
